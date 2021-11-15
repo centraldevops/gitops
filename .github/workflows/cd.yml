@@ -61,5 +61,5 @@ jobs:
             clusterName: gitops
 
         - name: set deployment image
-          run: kubectl set image deployment wildfly-test=divand/wildfly-test:${{ steps.tagging.outputs.new_version }}
+          run: kubectl set image deployment/wildfly-test wildfly-test=divand/wildfly-test:${{ steps.tagging.outputs.new_version }}
           
