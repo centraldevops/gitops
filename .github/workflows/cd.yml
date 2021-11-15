@@ -15,7 +15,7 @@ jobs:
           id: docker_meta
           uses: crazy-max/ghaction-docker-meta@v1
           with:
-            images: wesleywillians/avancadev-dev-k8sgo
+            images: divand/wildfly-test
             tag-sha: true
 
 
@@ -45,7 +45,7 @@ jobs:
             context: .
             file: ./Dockerfile
             platforms: linux/amd64,linux/arm64,linux/386
-            tags: wesleywillians/avancadev-dev-k8sgo:${{ steps.tagging.outputs.new_version }}
+            tags: divand/wildfly-test:${{ steps.tagging.outputs.new_version }}
 
         - name: Install doctl
           uses: digitalocean/action-doctl@v2
@@ -59,4 +59,5 @@ jobs:
             clusterName: live-k8s
 
         - name: set deployment image
-          run: kubectl set image deployment goserver goserver=wesleywillians/avancadev-dev-k8sgo:${{ steps.tagging.outputs.new_version }}
+          run: kubectl set image deployment wildfly-test wildfly-test=divand/wildfly-test:${{ steps.tagging.outputs.new_version }}
+          
