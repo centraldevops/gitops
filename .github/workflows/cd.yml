@@ -56,7 +56,7 @@ jobs:
           uses: matootie/dokube@v1.3.2
           with:
             personalAccessToken: ${{ secrets.DIGITALOCEAN_TOKEN }}
-            clusterName: live-k8s
+            clusterName: gitops
 
         - name: set deployment image
           run: kubectl set image deployment wildfly-test wildfly-test=divand/wildfly-test:${{ steps.tagging.outputs.new_version }}
