@@ -47,7 +47,7 @@ jobs:
             context: .
             file: ./Dockerfile
             platforms: linux/amd64,linux/arm64,linux/386
-            tags: divand/wildfly-test:${{ steps.docker_meta.outputs.tags }}
+            tags: divand/wildfly-test:${{ steps.tagging.outputs.new_version }}
 
         - name: Install doctl
           uses: digitalocean/action-doctl@v2
@@ -61,5 +61,5 @@ jobs:
             clusterName: gitops
 
         - name: set deployment image
-          run: kubectl set image deployment wildfly-test wildfly-test=divand/wildfly-test:${{ steps.docker_meta.outputs.tags }}
+          run: kubectl set image deployment wildfly-test wildfly-test=divand/wildfly-test:${{ steps.tagging.outputs.new_version }}
           
