@@ -8,7 +8,7 @@ jobs:
         runs-on: ubuntu-latest
 
         env:
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: false
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
         steps:
 
         - uses: actions/checkout@v2
@@ -55,11 +55,12 @@ jobs:
             token: ${{ secrets.DIGITALOCEAN_TOKEN }}
 
         - name: Setup kubectl
-          uses: matootie/dokube@v1.3.2
+          uses: matootie/dokube@v1.3.4
           with:
             personalAccessToken: ${{ secrets.DIGITALOCEAN_TOKEN }}
             clusterName: gitops
 
         - name: set deployment image
           run: kubectl set image deployment/wildfly-test wildfly-test=divand/wildfly-test:${{ steps.tagging.outputs.new_version }}
-          
+        - name: Get Nodes
+          run: kubectl get nodes 
