@@ -14,7 +14,7 @@ spec:
         spec:
             containers:
                 - name: wildfly-test
-                  image: divand/wildfly-test:d4d3cc7b4d1ad758b5b7861e4a0c3a5b9d4eb81b
+                  image: divand/wildfly-test:latest
                   ports:
                     - containerPort: 8080
                     - containerPort: 9990
